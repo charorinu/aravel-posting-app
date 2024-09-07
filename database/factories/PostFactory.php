@@ -15,16 +15,13 @@ class PostFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition()
+    public function definition(): array
     {
-        $user = User::inRandomOrder()->first(); // $user変数を定義
-        if (!$user) {
-            $user = User::factory()->create(); // ユーザーが存在しない場合、新しいユーザーを作成
-        }
         return [
-            'title' => $this->faker->realText(20), // 日本語のタイトルを生成
-            'content' => $this->faker->realText(200), // 日本語の本文を生成
-            'user_id' => $user->id, // ユーザーIDを設定
+             //
+             'user_id' => 1, // usersテーブルにidカラムの値が1のユーザーが存在することが前提
+             'title' => fake()->realText(20, 5),
+             'content' => fake()->realText(200, 5)
         ];
     }
 }
